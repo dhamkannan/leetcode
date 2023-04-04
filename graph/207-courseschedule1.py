@@ -1,7 +1,8 @@
-numCourses = 6
-prerequisites = [[1,0],[2,0],[3,1],[3,2],[4,5]]
+numCourses = 2
+# prerequisites = [[1,0],[2,0],[3,1],[3,2],[4,5]]
+prerequisites = [[1,0],[0,1]]
 
-def findOrder(numCourses, prerequisites):
+def canFinish(numCourses, prerequisites):
     adjM = {}
     for i in range(numCourses):
         adjM[i] = set()
@@ -20,12 +21,14 @@ def findOrder(numCourses, prerequisites):
         path.add(course)
         for preq in adjM[course]:
             if dfs(preq) == 'loop':
-                return 'loop'
+                return False
         path.remove(course)
         res.append(course)
     for course in adjM:
         if dfs(course) == 'loop':
-            return []
-    return res
+            return False
+            break
+    print(res)
+    return True if len(res) == numCourses else False
 
-print(findOrder(numCourses, prerequisites))
+print(canFinish(numCourses, prerequisites))
