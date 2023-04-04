@@ -21,7 +21,7 @@ def canFinish(numCourses, prerequisites):
         path.add(course)
         for preq in adjM[course]:
             if dfs(preq) == 'loop':
-                return False
+                return 'loop'
         path.remove(course)
         res.append(course)
     for course in adjM:

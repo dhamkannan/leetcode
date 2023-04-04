@@ -31,7 +31,8 @@ def leetcode():
         path.add(node)
 
         for nnode in adjMap[node]:
-            dfs(nnode)
+            if dfs(nnode) == 'loop':
+                return 'loop'
 
         path.remove(node)
         res.append(node)
