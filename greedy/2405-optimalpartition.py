@@ -1,3 +1,9 @@
+"""
+Time: o(n)
+Memory: o(26) -> o(1)
+
+"""
+
 s = "abacaba"
 def partitionString(s):
     res = 1

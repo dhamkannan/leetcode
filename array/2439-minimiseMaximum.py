@@ -1,3 +1,8 @@
+"""
+Time: o(n)
+Memory: o(1)
+"""
+
 import math
 # nums = [3,7,1,6]
 # nums = [13,13,20,0,8,9,9]
