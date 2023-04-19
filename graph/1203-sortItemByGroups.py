@@ -1,4 +1,4 @@
-#Work In Progress#
+#Work In Progress# Leet code 13/17 Passed
 import heapq
 from collections import defaultdict
 
@@ -7,25 +7,6 @@ m = 2
 group = [-1,-1,1,0,0,1,0,-1]
 beforeItems = [[],[6],[5],[6],[3,6],[],[],[]]
 
-# m = 2
-# n = 3
-# group = [0,1,-1]
-# beforeItems = [[], [], []]
-
-# n = 10
-# m = 4
-# group = [0,1,1,2,3,-1,0,0,0,1]
-# beforeItems = [[2,5],[3,5,4,6,8,7,2],[7],[],[],[],[],[],[],[]]
-
-# n = 8
-# m = 2
-# group = [-1,-1,1,0,0,1,0,-1]
-# beforeItems = [[],[6],[5],[6],[3],[],[4],[]]
-
-# n = 5
-# m = 5
-# group = [2,0,-1,3,0]
-# beforeItems = [[2,1,3],[2,4],[],[],[]]
 
 def sortItems1(n,m,group,beforeItems):
     maxHeap = []
@@ -75,10 +56,10 @@ def sortItems(n,m,group,beforeItems):
         else:
             group2.append(g) 
     groupsMap = defaultdict(list)
+    # [0,0,2,1,0]
+    # [[3],[],[],[],[1,3,2]]
     for k, groups in enumerate(group2):
         groupsMap[groups].append(k)
-    print(groupsMap)
-    print(group2)
     localItems = [[] for _ in range(n)]
     groupItems = [[] for _ in range(n)]
     for i, items in enumerate(beforeItems):
@@ -87,9 +68,13 @@ def sortItems(n,m,group,beforeItems):
             if group2[item] == currgroup:
                 localItems[i].append(item)
             else:
-                groupItems[i] = groupsMap[group2[item]]
-    print(localItems)
-    print(groupItems)
+                for x in groupsMap[group2[i]]:
+                    # groupItems[x].append(item)
+                    groupItems[x] += groupsMap[group2[item]]
+    print('group2', group2)
+    print('gmap', groupsMap)
+    print('litems', localItems)
+    print('gitems', groupItems)
     visit = set()
     path = set()
     visit2 = set()
